@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping ME!</title>
+     <!-- Bootstrap CDN -->
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="CssStyles/styles.css">
+    
+    <style>
+        .hero {
+            position: relative; /* Ensure stacking context */
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('Images/Ecommerce.jpg') center/cover no-repeat;    
+            height: 300px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 0 20px;
+            overflow:hidden; /* Ensure the overlay stays contained */
+}
+    </style>
+</head>
+<body>
+    <!-- Order History Modal (Unique ID) -->
+    <div class="modal" id="order-history-modal">
+        <div class="modal-content">
+            <h3>Order History</h3>
+            <ul id="order-list">
+                <!-- Orders dynamically loaded here -->
+            </ul>
+            <button onclick="closeOrderHistory()">Close</button>
+        </div>
+    </div>
+
+    <header class="bg-primary text-white py-3">
+        <div class="container d-flex align-items-center justify-content-between">
+            <img src="Images/shopping-logo.png" style="width: 300px; height: 80px;">
+            <input type="text" id="search-bar" class="form-control w-50 me-3" placeholder="Search products..." onkeyup="searchProducts()">
+            <div class="d-flex align-items-center position-relative">
+                <img src="Images/notification.png" alt="Notifications" class="me-3" onclick="openNotification()" style="cursor: pointer;" width="32" height="32">
+                <img src="Images/user.png" alt="User Login" class="me-3" onclick="openLogin()" style="cursor: pointer;" width="32" height="32">
+                <a href="cart.html">
+                    <img src="Images/trolley.png" alt="Cart" style="cursor: pointer;" width="32" height="32">
+                </a>
+                <div class="cart-count" id="cart-count">0</div>
+            </div>
+            <img src="Images/brightness-and-contrast.png" id="dark-mode-toggle" alt="Dark Mode Toggle" class="ms-3" onclick="toggleDarkMode()" style="cursor: pointer;" height="32px;" width="32px;">
+            <div class="ms-3">
+                <label for="language" class="me-2">Language:</label>
+                <select id="language" class="form-select d-inline-block w-auto" onchange="changeLanguage()">
+                    <option value="en">English</option>
+                    <option value="es">Español</option>
+                    <option value="fr">Français</option>
+                </select>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div>
+            <div class="overlay"></div>
+            <h2>Welcome to Shopping ME!</h2>
+            <p>Discover the best deals on the products you love!</p>
+            <a href="#products" class="btn btn-light">Shop Now</a>
+        </div>
+    </section>
+
+    <!-- Sorting and Filtering -->
+    <div id="sort-filter">
+        <div>
+            <label for="sort-by">Sort By:</label>
+            <select id="sort-by" onchange="sortProducts()">
+                <option value="price-low">Price: Low to High</option>
+                <option value="price-high">Price: High to Low</option>
+                <option value="popularity">Popularity</option>
+            </select>
+        </div>
+        <div>
+            <label for="filter-by">Filter By:</label>
+            <select id="filter-by" onchange="filterProducts()">
+                <option value="all">All</option>
+                <option value="shoes">Shoes</option>
+                <option value="electronics">Electronics</option>
+                <option value="clothing">Clothing</option>
+            </select>
+            <div id="status-message"></div>
+        </div>
+    </div>
+
+    <!-- Categories Section -->
+    <div id="categories" class="container">
+        <section class="category my-4" id="shoes">
+            <h2>Shoes</h2>
+            <div class="row products">
+                <!-- Products dynamically injected here -->
+            </div>
+        </section>
+        <section class="category my-4" id="electronics">
+            <h2>Electronics</h2>
+            <div class="row products">
+                <!-- Products dynamically injected here -->
+            </div>
+        </section>
+        <section class="category my-4" id="clothing">
+            <h2>Clothing</h2>
+            <div class="row products">
+                <!-- Products dynamically injected here -->
+            </div>
+        </section>
+    </div>
+
+    <!-- Products Section -->
+    <section class="products" id="products"></section>
+
+    <!-- Product Details Modal (Updated for Variations) -->
+    <div class="modal" id="product-details">
+        <div class="modal-content">
+            <img id="details-image" src="" alt="Product Image">
+            <h3 id="details-name"></h3>
+            <p id="details-price"></p>
+            <label for="size">Size:</label>
+            <select id="size">
+                <option value="S">Small</option>
+                <option value="M">Medium</option>
+                <option value="L">Large</option>
+            </select>
+            <label for="color">Color:</label>
+            <select id="color">
+                <option value="Red">Red</option>
+                <option value="Blue">Blue</option>
+                <option value="Black">Black</option>
+            </select>
+            <label for="quantity">Quantity:</label>
+            <input type="number" id="quantity" min="1" value="1">
+            <button onclick="addToCart()">Add to Cart</button>
+            <button onclick="closeDetails()">Close</button>
+        </div>
+
+        <!-- Reviews and Ratings -->
+        <div class="reviews-container" id="reviews-container-1">
+            <!-- Reviews will be dynamically added here -->
+        </div>
+        <div class="review-form">
+            <label for="rating-input-1">Rating (1-5):</label>
+            <input type="number" id="rating-input-1" class="rating-input" min="1" max="5">
+            <label for="review-input-1">Review:</label>
+            <textarea id="review-input-1" class="review-input" placeholder="Write a comment"></textarea>
+            <button class="review-submit-btn" onclick="addReview(1)">Submit Review</button>
+        </div>
+    </div>
+
+<!-- Login Modal -->
+<div class="modal" id="login-modal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Login</h3>
+                <button type="button" class="btn-close" onclick="closeLogin()"></button>
+            </div>
+            <div class ="modal-body">
+                <label for="login-username">Username:</label>
+                <input type="text" id="login-username" name="username" required>
+                <label for="login-password">Password:</label>
+                <input type="password" id="login-password" name="password" required>
+                <label>
+                    <input type="checkbox" id="toggle-password" onclick="togglePassword()">
+                    Show Password
+                </label>
+            </div>
+            <button type="button" onclick="handleLogin()">Login</button>
+            <p>Don't have an account? <a href="#" onclick="showSignupForm()">Sign Up</a></p>
+        </div>
+    </div>
+</div>
+
+
+<!-- User Options Modal (for logged-in users) -->
+<div class="modal" id="user-options-modal">
+    <div class="modal-content">
+        <button class="close-button" onclick="closeUserOptions()">×</button>
+        <h3>Welcome, <span id="user-name"></span></h3>
+        <button onclick="logout()">Logout</button>
+    </div>
+</div>
+
+
+<div class="modal" id="notification-modal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Notifications</h5>
+                <button type="button" class="btn-close" onclick="closeNotification()"></button>
+            </div>
+            <div class="modal-body">
+                <ul id="notification-list" class="list-group">
+                    <!-- Notifications dynamically added here -->
+                </ul>
+                <h6 class="mt-4">Track Your Order</h6>
+                <form id="track-order-form" onsubmit="trackOrder(event)">
+                    <div class="mb-3">
+                        <label for="order-id" class="form-label">Order ID</label>
+                        <input type="text" id="order-id" class="form-control" placeholder="Enter your order ID" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Track</button>
+                </form>
+                <div id="tracking-result" class="mt-3 text-secondary"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <!-- Signup Modal -->
+    <div class="modal" id="signup-modal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">Sign up</h3>
+                    <button type="button" class="btn-close" onclick="closeSignup()"></button>
+                </div>
+
+                <form id="signup-form">
+                    <label for="signup-username">Username:</label>
+                    <input type="text" id="signup-username" name="username" required>
+                    <label for="signup-email">Email:</label>
+                    <input type="email" id="signup-email" name="email" required>
+                    <label for="signup-password">Password:</label>
+                    <input type="password" id="signup-password" name="password" required>
+                    <label for="confirm-password">Confirm Password:</label>
+                    <input type="password" id="confirm-password" name="confirm-password" required>
+                    <button type="submit">Register</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+   <!-- Chat Support -->
+<div id="chat-support" class="chat-widget p-3 border rounded shadow" style="max-width: 400px; position: fixed; bottom: 20px; right: 20px; background-color: orange;">
+    <div class="chat-header d-flex justify-content-between align-items-center mb-3">
+        <h4 class="mb-0" style="color: black;">Chat Support</h4>
+        <button onclick="closeChat()" class="btn btn-sm btn-danger">X</button>
+    </div>
+    <div id="chat-messages" class="mb-3" style="max-height: 300px; overflow-y: auto;">
+        <!-- Chat messages will appear here -->
+    </div>
+    <div class="d-flex">
+        <textarea id="chat-input" class="form-control me-2" placeholder="Type your message..." rows="2"></textarea>
+        <button onclick="sendMessage()" class="btn btn-primary">Send</button>
+    </div>
+</div>
+<hr>
+<hr>
+<div class="footer bg-black py-5">
+    <div class="container">
+        <div class="row">
+            <!-- Column 1: App Download Section -->
+            <div class="col-md-3 mb-4">
+                <h3 class="h5">Download Our App</h3>
+                <p>Download App for Android and iOS mobile phones.</p>
+                <div class="app-logo">
+                    <img src="Images/Google_Play_Store_badge_EN.svg.png" class="img-fluid" alt="Google Play Store Badge">
+                </div>
+            </div>
+
+            <!-- Column 2: Logo and Purpose -->
+            <div class="col-md-3 mb-4 text-center">
+                <img src="Images/shopping-logo.png" class="img-fluid mb-3" alt="Shopping Logo">
+                
+            </div>
+
+            <!-- Column 3: Useful Links -->
+            <div class="col-md-3 mb-4">
+                <h3 class="h5">Useful Links</h3>
+                <ul class="list-unstyled">
+                    <li><a href="#" class="text-decoration-none text-white">Coupons</a></li>
+                    <li><a href="#" class="text-decoration-none text-white">Blog Post</a></li>
+                    <li><a href="#" class="text-decoration-none text-white">Return Policy</a></li>
+                    <li><a href="#" class="text-decoration-none text-white">Join Affiliate</a></li>
+                </ul>
+            </div>
+
+            <!-- Column 4: Social Media Links -->
+            <div class="col-md-3 mb-4">
+                <h3 class="h5">Follow Us</h3>
+                <ul class="list-unstyled">
+                    <li><a href="#" class="text-decoration-none text-white">Facebook</a></li>
+                    <li><a href="#" class="text-decoration-none text-white">Twitter</a></li>
+                    <li><a href="#" class="text-decoration-none text-white">Instagram</a></li>
+                    <li><a href="#" class="text-decoration-none text-white">YouTube</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Horizontal Line and Copyright -->
+        <hr class="my-4">
+        <div class="text-center">
+            <p class="mb-0 text-white">&copy; 2024 <a href="#" class="text-decoration-none text-white">Shopping ME!</a>. All rights reserved.</p>
+        </div>
+    </div>
+</div>
+    <!-- Bootstrap and Custom Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
+
+

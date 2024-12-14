@@ -1,0 +1,758 @@
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+body {
+    background-color: #f0f2f5;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Header */
+header {
+    background-color: #007bbd;
+    color: #fff;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+
+header #search-bar {
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    width: 300px;
+    transition: width 0.3s ease, box-shadow 0.3s ease;
+}
+
+header #search-bar:focus {
+    width: 600px;
+    outline: none;
+    box-shadow: 0 0 10px rgba(255, 221, 87, 0.5);
+}
+
+.cart-icon {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    position: relative;
+}
+
+.cart-icon img {
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.cart-icon img:hover {
+    transform: scale(1.1);
+}
+
+.cart-count {
+    position: absolute;
+    top: -5px;
+    right: 5px;
+    background-color: #ff0000;
+    color: #fff;
+    font-size: 12px;
+    padding: 4px 6px;
+    border-radius: 50%;
+}
+
+/* Hero Section */
+.hero {
+    position: relative; /* Ensure stacking context */
+    background: url('Images/Ecommerce.jpg') center/cover no-repeat;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 0 20px;
+    overflow: hidden; /* Ensure the overlay stays contained */
+}
+
+.hero h2 {
+    font-size: 42px;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+    z-index: 2;
+    color: white;
+}
+
+.hero p {
+    font-size: 18px;
+    margin-bottom: 15px;
+    font-weight: 300;
+    z-index: 2;
+    color:white
+}
+
+.hero a {
+    display: inline-block;
+    padding: 12px 24px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #ff8800;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    z-index: 2;
+}
+
+.hero a:hover {
+    background-color: #ff6600;
+    z-index: 3;
+}
+
+/* Product Cards */
+.products {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    padding: 40px 20px;
+}
+
+.product-card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.product-card:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    transform: translateY(-5px);
+}
+
+.product-card img {
+    max-width: 100%;
+    height: 50%;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    transition: transform 0.3s ease;
+}
+
+.product-card img:hover {
+    transform: scale(1.1);
+}
+
+.product-card h3 {
+    font-size: 20px;
+    color: #333;
+    margin: 10px 0;
+}
+
+.product-card p {
+    color: #666;
+    font-size: 18px;
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+.product-card button {
+    padding: 10px 20px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.product-card button:hover {
+    background-color: #007bbd;
+}
+
+/* Modals */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    max-width: 400px;
+    width: 90%;
+    box-shadow: 0 5px 15px rgba(255, 255, 255, 0.3);
+    border: 1px solid white;
+}
+/* Close button styling */
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    color: #333;
+}
+
+.close-button:hover {
+    color: #ff0000;
+}
+
+.modal-content h3 {
+    font-size: 24px;
+    margin-bottom: 15px;
+}
+
+.modal-content img {
+    width: 100%;
+    max-width: 200px;
+    margin: 20px 0;
+    border-radius: 5px;
+}
+
+.modal-content button {
+    padding: 10px 20px;
+    background-color: #333;
+    color: #ffdd57;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.modal-content button:hover {
+    background-color: #ffdd57;
+    color: #333;
+}
+
+.modal-content select {
+    width: 100px;
+    padding: 8px;
+    font-size: 16px;
+    text-align: center;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin: 10px 0;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Other Styles omitted for brevity */
+
+
+/* Checkout Modal */
+        .modal-content form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .modal-content form label {
+            font-weight: bold;
+        }
+        .modal-content form input,
+        .modal-content form textarea {
+            padding: 8px;
+            font-size: 16px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            width: 100%;     
+        }
+        #quantity {
+            width: 80px;
+            padding: 8px;
+            font-size: 16px;
+            text-align: center;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin: 10px 0;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        #quantity:focus {
+            border-color: #ffdd57;
+            box-shadow: 0 0 5px rgba(255, 221, 87, 0.8);
+            outline: none;
+        }
+        .category {
+            margin: 40px 0;
+            padding: 0 20px;
+        }
+        .category h2 {
+            font-size: 32px;
+            margin-bottom: 20px;
+            color: #333;
+            border-left: 5px solid #ffdd57;
+            padding-left: 10px;
+        }
+        .category .products {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+/* Login Modal */
+#login-modal .modal-content {
+    text-align: center;
+}
+
+#login-modal label {
+    font-weight: bold;
+    display: block;
+    margin-top: 10px;
+}
+
+#login-modal input[type="text"],
+#login-modal input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-top: 5px;
+}
+
+#login-modal button {
+    display: inline-block;
+    margin-top: 15px;
+    width: 100%;
+    padding: 10px 0;
+}
+
+#login-modal .btn-close
+{
+    width: 20%;
+    align-content: baseline;
+}
+#signup-modal .btn-close
+{
+    width: 20%;
+}
+
+
+#login-form input[type="checkbox"]
+{ 
+    width: 5%;
+}
+
+/* Notification Modal */
+#notification-modal ul {
+    list-style: none;
+    padding: 0;
+    margin: 10px 0;
+}
+
+#notification-modal ul li {
+    margin-bottom: 10px;
+    background-color: #f1f1f1;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+
+/* Dark Mode Styles */
+body.dark-mode {
+    background-color: #121212;
+    color: #ffffff; /* Ensure all text inside body turns white */
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+header.dark-mode {
+    background-color: #1e1e1e;
+    color: #ffffff;
+    border-bottom: 1px solid #333;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+img#dark-mode-toggle {
+    cursor: pointer;
+    border-radius: 4px;
+    height: 40px;
+    width: 40px;
+    transition: background-color 0.3s ease;
+}
+
+.product-card.dark-mode {
+    background-color: #1e1e1e;
+    color: #ffffff; /* Ensure text inside product cards is white */
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+button.dark-mode {
+    background-color: #333;
+    color: #ffffff;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.dark-mode h1, 
+.dark-mode h2, 
+.dark-mode h3, 
+.dark-mode p, 
+.dark-mode span, 
+.dark-mode a {
+    color: #ffffff;
+}
+
+.dark-mode label {
+    color: white;
+}
+
+
+input.dark-mode {
+    
+    color: black;
+    border: 1px solid #555;
+}
+#sort-filter label
+{
+    color: black;
+}
+/* Default Light Mode for Modal */
+.modal-content {
+    background-color: #ffffff; /* White background in light mode */
+    color: #000000; /* Black text in light mode */
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.modal-content label,
+.modal-content select,
+.modal-content input {
+    color: #000000; /* Black text for inputs in light mode */
+    background-color: #ffffff; /* White background for inputs in light mode */
+    border: 1px solid #ccc; /* Default border for light mode */
+}
+
+/* Dark Mode for Modal */
+.modal-content.dark-mode {
+    background-color: #1e1e1e; /* Dark background in dark mode */
+    color: #ffffff; /* White text in dark mode */
+}
+
+.modal-content.dark-mode label,
+.modal-content.dark-mode select,
+.modal-content.dark-mode input {
+    color: #ffffff; /* White text for inputs in dark mode */
+    background-color: #333; /* Dark background for inputs in dark mode */
+    border: 1px solid #555; /* Border for better visibility */
+}
+/* Dark Mode for Review Container */
+.reviews-container.dark-mode {
+    background-color: #1e1e1e; /* Dark background for the review container */
+    color: #ffffff; /* White text for dark mode */
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.review-form.dark-mode {
+    background-color: #1e1e1e; /* Dark background for the form */
+    color: #ffffff; /* White text for form labels */
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.review-form.dark-mode input,
+.review-form.dark-mode textarea {
+    color: #ffffff; /* White text for inputs */
+    background-color: #333; /* Dark background for inputs */
+    border: 1px solid #555; /* Border for better visibility */
+}
+
+.review-form.dark-mode button {
+    background-color: #333; /* Dark background for button */
+    color: #ffffff; /* White text for button */
+}
+.dark-mode #notification-modal ul {
+    list-style: none;
+    color: black;
+    padding: 0;
+    margin: 10px 0;
+}
+
+
+
+/* Sort and Filter Options */
+#sort-filter {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px;
+    padding: 10px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+#sort-filter select {
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+}
+
+
+/* Reviews Section */
+.reviews-container {
+    margin: 20px 0;
+    padding: 20px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+.no-reviews {
+    color: #777;
+    font-style: italic;
+}
+
+.review-item {
+    margin-bottom: 15px;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+}
+
+.review-item:last-child {
+    border-bottom: none;
+}
+
+.review-item .rating {
+    color: #ff8800;
+    font-weight: bold;
+}
+
+.review-item p {
+    margin: 5px 0 0;
+    color: #555;
+    font-size: 14px;
+}
+
+/* Review Form */
+.review-form {
+    margin-top: 20px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background-color: #fefefe;
+}
+
+.rating-input,
+.review-input {
+    width: calc(100% - 20px);
+    margin: 10px 0;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.rating-input {
+    width: 60px;
+    text-align: center;
+}
+
+.review-submit-btn {
+    padding: 10px 20px;
+    background-color: #007bbd;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.review-submit-btn:hover {
+    background-color: #005f8d;
+}
+
+/* Chat Support Styles */
+#chat-support {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #ff8800;
+    color: #fff;
+    padding: 10px 15px;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+#chat-modal {
+    display: none;
+    position: fixed;
+    bottom: 80px;
+    right: 20px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    max-width: 300px;
+    width: 100%;
+    padding: 10px;
+    z-index: 1000;
+}
+
+#chat-modal header {
+    background: #ff8800;
+    color: #fff;
+    padding: 10px;
+    border-radius: 10px 10px 0 0;
+    text-align: center;
+}
+
+#chat-modal textarea {
+    width: 100%;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px 0;
+    resize: none;
+}
+
+#chat-modal button {
+    background-color: #ff8800;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Order History Styles */
+#order-history {
+    margin: 20px;
+    background: #fff;
+    padding: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+#order-history h3 {
+    margin-bottom: 10px;
+}
+
+#order-history ul {
+    list-style: none;
+    padding: 0;
+}
+
+#order-history ul li {
+    background: #f9f9f9;
+    margin-bottom: 5px;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+/* Discounts and Coupons */
+#discounts {
+    background: #f9f9f9;
+    padding: 15px;
+    border-radius: 10px;
+    margin: 20px;
+}
+
+#discounts input {
+    width: calc(100% - 120px);
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+#discounts button {
+    background: #ff8800;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Language Selector */
+#language-selector {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    background: #fff;
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+/* Language Selector Styles */
+#language {
+    appearance: none; /* Remove default browser styling */
+    -webkit-appearance: none; /* For Safari */
+    -moz-appearance: none; /* For Firefox */
+    background-color: #f8f9fa;
+    color: #333;
+    padding: 8px 12px;
+    font-size: 14px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 150px; /* Adjust as needed */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 6'%3E%3Cpath fill='%23333' d='M0 0l5 6 5-6z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 12px;
+    transition: all 0.3s ease;
+}
+
+#language:hover {
+    border-color: #007bff;
+    background-color: #e9ecef;
+}
+
+#language:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+/*Signup*/
+#signup-modal .modal-content {
+    text-align: center;
+    display: block;
+}
+
+#signup-modal label {
+    font-weight: bold;
+    display: block;
+    margin-top: 10px;
+}
+
+#signup-modal input[type="text"]
+#signup-modal input[type="email"]
+#signup-modal input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-top: 5px;
+}
+
+#signup-modal button {
+    display: inline-block;
+    margin-top: 15px;
+    width: 100%;
+    padding: 10px 0;
+}
+

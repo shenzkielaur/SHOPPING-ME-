@@ -1,0 +1,119 @@
+/* General Reset */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+    color: #333;
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+/* Checkout Section Styling */
+section.checkout {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 400px;
+    padding: 20px;
+}
+
+.checkout-content h3 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #444;
+}
+
+/* Form Elements */
+#checkout-form label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #555;
+}
+
+#checkout-form input,
+#checkout-form textarea,
+#payment-method,
+#coupon-code {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+#checkout-form textarea {
+    resize: none;
+    height: 80px;
+}
+.checkout-content p{
+    color:black
+}
+
+/* Payment Method */
+#payment-method {
+    background-color: #fff;
+    cursor: pointer;
+}
+
+/* Shipping Info */
+p {
+    font-size: 14px;
+    margin-bottom: 10px;
+    color: #777;
+}
+
+#shipping-days {
+    font-weight: bold;
+    color: #333;
+}
+
+/* Coupon Section */
+button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    background-color: #0056b3;
+    color: #fff;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* Order Summary */
+h4 {
+    margin-top: 20px;
+    margin-bottom: 10px;
+    font-size: 16px;
+    color: #444;
+}
+
+#checkout-items {
+    list-style-type: none;
+    padding: 0;
+    margin-bottom: 15px;
+}
+
+#checkout-items li {
+    padding: 5px 0;
+    border-bottom: 1px solid #eee;
+    font-size: 14px;
+    color: #555;
+}
+
+#checkout-total {
+    font-weight: bold;
+    font-size: 16px;
+    color: #333;
+}

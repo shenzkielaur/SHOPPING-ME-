@@ -1,0 +1,43 @@
+/* Styling the cart-items list */
+#cart-items {
+    list-style-type: none;
+    padding: 0;
+    margin: 20px 0;
+}
+
+#cart-items li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    color: black;
+}
+
+#cart-items li:hover {
+    background-color: #e9ecef;
+    cursor: pointer;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    color: white;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+#login-modal .modal-content p {
+    font-size: 14px;
+    font-weight: 100;
+}
